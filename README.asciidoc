@@ -1,1 +1,14 @@
-== Android Bootcamp
+= Android Bootcamp
+
+== Videos
+
+http://marakana.com/external/qcom/Android-QCom-Day1-Part1.m4v
+http://marakana.com/external/qcom/Android-QCom-Day1-Part2.m4v
+http://marakana.com/external/qcom/Android-QCom-Day1-Part3.m4v
+http://marakana.com/external/qcom/Android-QCom-Day1-Part4.m4v
+
+== Homework
+
+* Watch the http://mrkn.co/f/595[Eclipse video]
+* Read chapters on OOP and Packages in Fundamentals of Java course
+* Read Android UI module
