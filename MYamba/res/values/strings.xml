@@ -6,5 +6,6 @@
     <string name="title_activity_status">Status Activity</string>
     <string name="update">Update</string>
     <string name="status_hint">Enter your status update...</string>
+    <string name="clear">Clear</string>
 
 </resources>
