@@ -1,13 +1,16 @@
 package com.qualcomm.myamba;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
 
 public class StatusActivity extends Activity implements OnClickListener {
 	Button buttonUpdate;
@@ -35,11 +38,29 @@ public class StatusActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.button_update:
 			String status = editStatus.getText().toString();
-			Log.d("Yamba", "onClick'ed with status " + status);
+
+			new UpdateTask().execute(status);
+			
 			break;
 		case R.id.button_clear:
 			editStatus.setText("");
 			break;
 		}
+	}
+
+	class UpdateTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			YambaClient client = new YambaClient("student", "password");
+			client.updateStatus(params[0]);
+			return "Posted " + params[0];
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			Toast.makeText(StatusActivity.this, result, Toast.LENGTH_LONG).show();
+		}
+
 	}
 }
