@@ -27,12 +27,6 @@ public class StatusActivity extends Activity implements OnClickListener {
 		buttonUpdate.setOnClickListener(this);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_status, menu);
-		return true;
-	}
-
 	// Callback from OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
