@@ -7,5 +7,10 @@
     <string name="update">Update</string>
     <string name="status_hint">Enter your status update...</string>
     <string name="clear">Clear</string>
+    <string name="username">User name</string>
+    <string name="username_summary">How do you log into the service?</string>
+    <string name="password">Password</string>
+    <string name="password_summary">What is your password to log in?</string>
+    <string name="preferences">Preferences</string>
 
 </resources>
