@@ -16,3 +16,6 @@
 * Watch the http://mrkn.co/f/595[Eclipse video]
 * Read chapters on OOP and Packages in Fundamentals of Java course
 * Read Android UI module
+
+* Add menu item for `StatusActivity`. Hint: use icon: `@android:drawable/ic_menu_send`
+* Read about ActionBar: http://marakana.com/external/qcom/Action_Bar.html
