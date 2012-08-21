@@ -19,3 +19,22 @@
 
 * Add menu item for `StatusActivity`. Hint: use icon: `@android:drawable/ic_menu_send`
 * Read about ActionBar: http://marakana.com/external/qcom/Action_Bar.html
+
+== SDK Notes ==
+
+When doing development work, you should be using an Android SDK which was built from the Android Open Source Project (AOSP).  Several versions of this have been created over time, and are accessible on Qualnet for download/copying.
+ 
+. Navigate to \\crate\qisdcrm\tools\android\sdk
+
+. Navigate to the subdirectory for one of the available versions (e.g., “2.2.3”, “4.0.1_r1”, “4.1.1_r3”).
+
+. Navigate to the desired platform subdirectory (“linux” or “windows”).
+
+. Copy all of the folder contents to your local system.
+
+. Extract the SDK archive (e.g., “android-sdk_eng.rchicken_windows.zip”) to the desired local installation directory.
+
+ 
+The rest of the setup steps are the same as the Manual Development Environment Setup defined on http://marakana.com/support/android_setup.html[Marakana website].
+ 
+If someone were to need a newer/different version of the Android SDK built, they can get in touch with Mike McSherry (mcsherry@qualcomm.com).
