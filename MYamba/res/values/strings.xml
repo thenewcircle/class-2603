@@ -12,5 +12,6 @@
     <string name="password">Password</string>
     <string name="password_summary">What is your password to log in?</string>
     <string name="preferences">Preferences</string>
+    <string name="refresh">Refresh</string>
 
 </resources>
