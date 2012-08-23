@@ -3,7 +3,7 @@ package com.qualcomm.myamba;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.IBinder;
+import android.database.MatrixCursor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -13,7 +13,8 @@ import com.marakana.android.yamba.clientlib.YambaClient.TimelineStatus;
 
 public class RefreshService extends IntentService {
 	static final String TAG = "RefreshService";
-	
+	static final String REFRESH_BRAODCAST = "com.qualcomm.broadcast.new_statuses";
+
 	public RefreshService() {
 		super(TAG);
 	}
@@ -44,12 +45,8 @@ public class RefreshService extends IntentService {
 		client.fetchFriendsTimeline(new MyTimelineProcessor());
 	}
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		return null;
-	}
-
 	class MyTimelineProcessor implements TimelineProcessor {
+		YambaApp yamba;
 
 		@Override
 		public boolean isRunnable() {
@@ -59,10 +56,18 @@ public class RefreshService extends IntentService {
 		@Override
 		public void onStartProcessingTimeline() {
 			Log.d(TAG, "starting to process timeline");
+
+			yamba = (YambaApp) getApplication();
+			yamba.cursor = new MatrixCursor(YambaApp.COLUMN_NAMES);
 		}
 
 		@Override
 		public void onTimelineStatus(TimelineStatus status) {
+
+			yamba.cursor.newRow().add(status.getId())
+					.add(status.getCreatedAt()).add(status.getUser())
+					.add(status.getMessage());
+
 			Log.d(TAG,
 					String.format("%s: %s", status.getUser(),
 							status.getMessage()));
@@ -70,7 +75,11 @@ public class RefreshService extends IntentService {
 
 		@Override
 		public void onEndProcessingTimeline() {
-			Log.d(TAG, "finished processing timeline");
+			sendBroadcast( new Intent(REFRESH_BRAODCAST) );
+			
+			Log.d(TAG,
+					"finished processing timeline count: "
+							+ yamba.cursor.getCount() );
 		}
 	}
 }

@@ -1,11 +1,39 @@
 package com.qualcomm.myamba;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
+	static final String[] FROM = { YambaApp.C_USER, YambaApp.C_MESSAGE };
+	static final int[] TO = { android.R.id.text1, android.R.id.text2 };
+	YambaApp yamba;
+	SimpleCursorAdapter adapter;
+	RefreshReceiver receiver;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		yamba = (YambaApp) getApplication();
+
+		// Create and setup adapter
+		adapter = new SimpleCursorAdapter(this,
+				android.R.layout.simple_list_item_2, yamba.cursor, FROM, TO);
+		setListAdapter(adapter);
+
+		// Register receiver
+		receiver = new RefreshReceiver();
+		registerReceiver(receiver, new IntentFilter(
+				RefreshService.REFRESH_BRAODCAST));
+	}
 
 	// --- Menu callbacks ---
 
@@ -32,6 +60,14 @@ public class MainActivity extends Activity {
 
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	class RefreshReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			adapter.changeCursor(yamba.cursor);
+			Log.d("RefreshReceiver", "onReceived");
 		}
 	}
 
