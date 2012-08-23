@@ -27,6 +27,9 @@
             android:name=".PrefsActivity"
             android:label="@string/preferences" >
         </activity>
+        
+        <service android:name=".RefreshService"></service>
+        
     </application>
 
 </manifest>
