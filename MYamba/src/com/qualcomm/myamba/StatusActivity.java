@@ -1,9 +1,11 @@
 package com.qualcomm.myamba;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,7 +36,7 @@ public class StatusActivity extends Activity implements OnClickListener {
 			String status = editStatus.getText().toString();
 
 			new UpdateTask().execute(status);
-			
+
 			break;
 		case R.id.button_clear:
 			editStatus.setText("");
@@ -46,14 +48,31 @@ public class StatusActivity extends Activity implements OnClickListener {
 
 		@Override
 		protected String doInBackground(String... params) {
-			YambaClient client = new YambaClient("student", "password");
-			client.updateStatus(params[0]);
-			return "Posted " + params[0];
+			SharedPreferences prefs = PreferenceManager
+					.getDefaultSharedPreferences(getApplication());
+			String username = prefs.getString("username", null);
+			String password = prefs.getString("password", null);
+
+			// Check if we even have username and password
+			if (username == null || username.isEmpty() || password == null
+					|| password.isEmpty()) {
+				// bounce user to PrefsActivity
+				startActivity( new Intent(StatusActivity.this, PrefsActivity.class) );
+				
+				// if not, tell user that via a Toast
+				return "Please login first";
+			} else {
+				// else
+				YambaClient client = new YambaClient(username, password);
+				client.updateStatus(params[0]);
+				return "Posted " + params[0];
+			}
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
-			Toast.makeText(StatusActivity.this, result, Toast.LENGTH_LONG).show();
+			Toast.makeText(StatusActivity.this, result, Toast.LENGTH_LONG)
+					.show();
 		}
 
 	}
