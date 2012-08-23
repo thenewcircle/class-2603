@@ -31,3 +31,12 @@ When doing development work, you should be using an Android SDK which was built 
 The rest of the setup steps are the same as the Manual Development Environment Setup defined on http://marakana.com/support/android_setup.html[Marakana website].
  
 If someone were to need a newer/different version of the Android SDK built, they can get in touch with Mike McSherry (mcsherry@qualcomm.com).
+
+
+== Java Goodies ==
+
+* http://marakana.com/bookshelf/java_fundamentals_tutorial/object_oriented.html[OOP]
+
+* http://marakana.com/bookshelf/java_fundamentals_tutorial/packaging.html[Packages]
+
+* http://marakana.com/bookshelf/java_fundamentals_tutorial/design_patterns.html[Design Patters]
