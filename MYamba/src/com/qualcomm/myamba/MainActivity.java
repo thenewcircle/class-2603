@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity {
-	static final String[] FROM = { YambaApp.C_USER, YambaApp.C_MESSAGE };
-	static final int[] TO = { android.R.id.text1, android.R.id.text2 };
+	static final String[] FROM = { YambaApp.C_USER, YambaApp.C_MESSAGE,
+			YambaApp.C_CREATED_AT };
+	static final int[] TO = { R.id.text_user, R.id.text_message,
+			R.id.text_created_at };
 	YambaApp yamba;
 	SimpleCursorAdapter adapter;
 	RefreshReceiver receiver;
@@ -25,8 +27,8 @@ public class MainActivity extends ListActivity {
 		yamba = (YambaApp) getApplication();
 
 		// Create and setup adapter
-		adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_2, yamba.cursor, FROM, TO);
+		adapter = new SimpleCursorAdapter(this, R.layout.row, yamba.cursor,
+				FROM, TO);
 		setListAdapter(adapter);
 
 		// Register receiver
