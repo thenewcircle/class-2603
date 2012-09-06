@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener {
 	TextView output;
+	RoseView rose;
 	SensorManager sensorManager;
 	Sensor sensor;
 
@@ -21,6 +22,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		// UI stuff
 		setContentView(R.layout.activity_main);
 		output = (TextView) findViewById(R.id.output);
+		rose = (RoseView) findViewById(R.id.rose);
 
 		// Sensor stuff
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -47,6 +49,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 	// --- SensorEventListener callbacks ---
 	@Override
 	public void onSensorChanged(SensorEvent event) {
+		rose.setOrientation( (int) event.values[0] );
+		
 		output.setText(String.format("%d azimuth\n%d pitch\n%d roll",
 				(int) event.values[0], (int) event.values[1],
 				(int) event.values[2]));
