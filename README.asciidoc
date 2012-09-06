@@ -1,8 +1,10 @@
 = Android Bootcamp =
 
-== Courseware ==
-* http://marakana.com/external/qcom/Android_Overview.html
-* http://marakana.com/external/qcom/User_Interface.html
+== Parking Lot ==
+
+* Security
+* Sensors
+* Graphics
 
 == Homework ==
 
