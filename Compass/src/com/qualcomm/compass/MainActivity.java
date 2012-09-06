@@ -47,7 +47,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 	// --- SensorEventListener callbacks ---
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		// TODO: Update output with azimuth value reported by the sensor event
 		output.setText(String.format("%d azimuth\n%d pitch\n%d roll",
 				(int) event.values[0], (int) event.values[1],
 				(int) event.values[2]));
